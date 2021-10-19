@@ -1,4 +1,4 @@
-import { chakra } from '@chakra-ui/system';
+import { background, chakra } from '@chakra-ui/system';
 import styled from '@emotion/styled';
 import { DialogContent as DContent, DialogOverlay } from '@reach/dialog';
 import { AnimatePresence } from 'framer-motion';
@@ -222,8 +222,13 @@ export const Modal = ({
                         aria-label="Close"
                         onClick={onDismiss}
                         size={20}
-                        icon={<CloseLightIcon size={15} />}
-                        sx={{ ...buttonPropsSx }}
+                        icon={<CloseLightIcon size={25} />}
+                        sx={{
+                          background: 'none',
+                          border: 'none',
+                          color: 'white',
+                          cursor: 'pointer',
+                        }}
                         {...buttonProps}
                       />
                     </Box>

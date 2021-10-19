@@ -1,83 +1,82 @@
+import styled from '@emotion/styled';
 import Link from 'next/link';
-import { forwardRef } from 'react';
-import { FaReact } from 'react-icons/fa';
+import { useState, useEffect, PropsWithChildren } from 'react';
 
-import { Box, BoxProps, Container, Flex } from '@/components/shared/Grid';
-import { NavLink } from '@/components/shared/Link';
+import { Overlay } from '@/components/Overlay';
+import { Box, Container } from '@/components/shared/Grid';
+import { Modal } from '@/components/shared/Modal';
+import { useModal } from '@/components/shared/Modal/modalStore';
 
-const NavigationLink = forwardRef<any, BoxProps>((props, ref) => (
-  <Box
-    ref={ref}
-    as="a"
-    px={4}
-    py={1}
-    mx={3}
-    my={5}
-    display="block"
-    fontSize="sm"
-    borderRadius={5}
-    fontWeight="medium"
-    _hover={{
-      bg: 'gray.700',
-    }}
-    sx={{
-      '&.active': {
-        bg: 'gray.900',
-      },
-    }}
-    {...props}
-  />
-));
+const MainHeader = styled.header`
+  top: 0;
+  left: 0;
+  z-index: 1;
+  color: white;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+`;
 
-const items = [
-  {
-    href: '/about',
-    title: 'About',
-  },
-  {
-    href: '/blog',
-    title: 'Blog',
-  },
-  {
-    href: '/examples',
-    title: 'Examples',
-  },
-  {
-    href: '/form',
-    title: 'Example form',
-  },
-];
+const HeaderButton = styled.button`
+  width: 64px;
+  height: 88px;
+  cursor: pointer;
+  border: none;
+  align-self: center;
+  background-color: transparent;
+  &::before,
+  &::after {
+    content: '';
+    width: 22px;
+    height: 2px;
+    background-color: black;
+    display: inline-block;
+    position: absolute;
+  }
+  &::after {
+    top: 56px;
+  }
+`;
 
-function Navigation() {
-  return (
-    <Flex as="nav">
-      {items.map(item => {
-        return (
-          <Box key={item.title}>
-            <NavLink href={item.href} passHref>
-              <NavigationLink>{item.title}</NavigationLink>
-            </NavLink>
-          </Box>
-        );
-      })}
-    </Flex>
-  );
-}
+const HeaderWrapper = styled.div<{ headerBorder: string }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: ${props => props.headerBorder} 2px solid;
+  transition: border-bottom 0.1s ease-in-out;
+`;
 
 export function Header() {
-  return (
-    <Box as="header" bg="gray.800" color="white">
-      <Container>
-        <Flex flexShrink={0} alignItems="center">
-          <Link href="/">
-            <Flex as="a" mr={8} cursor="pointer">
-              <FaReact size={30} />
-            </Flex>
-          </Link>
+  const [position, setPosition] = useState(true);
 
-          <Navigation />
-        </Flex>
+  const headerBorder = position === true ? 'white' : 'lightgrey';
+
+  const ModalButton = ({ children, id }: PropsWithChildren<{ id: string }>) => {
+    const { show } = useModal(id);
+    return <HeaderButton onClick={() => show()}>{children}</HeaderButton>;
+  };
+
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      const scroll = document.scrollingElement?.scrollTop;
+      (scroll || '') > 10 ? setPosition(false) : setPosition(true);
+    });
+  }, []);
+  return (
+    <MainHeader>
+      <Container>
+        <HeaderWrapper headerBorder={headerBorder}>
+          <Link href="/">
+            <Box as="h1" color="blackAlpha.900" pl="10px">
+              DEPT
+            </Box>
+          </Link>
+          <ModalButton id="modal"></ModalButton>
+          <Modal id="modal" height="100%" width="100%" maxHeight="100%" maxWidth="100%" p="0">
+            <Overlay></Overlay>
+          </Modal>
+        </HeaderWrapper>
       </Container>
-    </Box>
+    </MainHeader>
   );
 }

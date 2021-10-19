@@ -15,7 +15,7 @@ export function BaseLayout({ children }: BaseLayoutProps) {
     <Flex flexDirection="column" height="100vh">
       <Header />
 
-      <Box as="main" flex="1 0 auto" display="block">
+      <Box as="main" flex="1 0 auto" display="block" pt="96px">
         <Container>{children}</Container>
       </Box>
 
