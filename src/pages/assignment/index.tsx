@@ -47,7 +47,7 @@ const Page: NextPage<PageProps> = props => {
     <>
       <NextSeo title="Page title" description="Page description" />
       <Hero></Hero>
-      <Work data={props.articles} />
+      <Work work={props.articles} />
       <Brands />
     </>
   );

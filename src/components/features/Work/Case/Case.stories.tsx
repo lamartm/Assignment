@@ -4,4 +4,4 @@ import { Case } from './Case';
 
 export default { title: 'Components/Case', component: Case };
 
-export const Example = () => <Case></Case>;
+export const Example = () => <div></div>;

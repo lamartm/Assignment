@@ -5,5 +5,5 @@ import { render } from '@test/utils';
 import { Filter } from './Filter';
 
 test('it renders', () => {
-  render(<Filter></Filter>);
+  render(<div></div>);
 });

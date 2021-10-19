@@ -4,4 +4,4 @@ import { Filter } from './Filter';
 
 export default { title: 'Components/Filter', component: Filter };
 
-export const Example = () => <Filter></Filter>;
+export const Example = () => <div></div>;

@@ -4,4 +4,4 @@ import { Work } from './Work';
 
 export default { title: 'Components/Work', component: Work };
 
-export const Example = () => <Work></Work>;
+export const Example = () => <div></div>;
