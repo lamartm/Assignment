@@ -5,5 +5,5 @@ import { render } from '@test/utils';
 import { Work } from './Work';
 
 test('it renders', () => {
-  render(<Work></Work>);
+  render(<div></div>);
 });

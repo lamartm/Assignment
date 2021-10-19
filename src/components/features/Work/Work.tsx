@@ -6,7 +6,7 @@ import { Filter } from '@/components/features/Work/Filter';
 import { Flex } from '../../shared/Grid';
 
 export interface WorkProps {
-  data: Case[];
+  work: Case[];
 }
 
 interface Case {
@@ -25,7 +25,7 @@ export function Work(props: WorkProps) {
     setSelectedFilter(d);
   };
 
-  const cases = props.data.map((d: Case) => {
+  const cases = props.work.map((d: Case) => {
     return (
       <Case
         key={d.id}
