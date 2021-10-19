@@ -5,5 +5,5 @@ import { render } from '@test/utils';
 import { Form } from './Form';
 
 test('it renders', () => {
-  render(<Form></Form>);
+  render(<div></div>);
 });
