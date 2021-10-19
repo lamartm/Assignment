@@ -37,7 +37,7 @@ export function Hero() {
             </Heading>
           </HeroArticle>
           <Flex justify={['center', 'end']} pr="10px">
-            <Button>VIEW CASE</Button>
+            <Button sx={{ background: 'black', borderRadius: '0px' }}>VIEW CASE</Button>
           </Flex>
         </Box>
       </HeroSection>

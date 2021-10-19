@@ -63,7 +63,7 @@ export function Footer() {
         as="button"
         fontSize="1rem"
         padding="0 32px 0 32px"
-        color="blue.700"
+        color="blue"
         border="none"
         cursor="pointer"
         display={['none', 'initial']}

@@ -14,6 +14,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> &
   Partial<MaskProps> & {
     type?: 'text' | 'textarea' | 'number' | 'password' | 'email' | 'tel' | 'search';
     color?: string;
+    sx?: any;
     inputRef?: any;
     clearable?: boolean;
     hasError?: boolean;
@@ -108,18 +109,16 @@ export const InputWrapper = ({ hasFocus, hasError, ...props }: InputWrapperProps
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        border: '1px solid',
-        borderColor: 'gray.200',
-        borderRadius: '5px',
-        height: '42px',
-        position: 'relative',
-        transition: 'all 0.3s ease',
-        overflow: 'hidden',
-        ...additionalProps,
-      }}
+      display="flex"
+      alignItems="center"
+      border="1px solid"
+      borderColor="gray.200"
+      borderRadius="5px"
+      height="42px"
+      position="relative"
+      transition="all 0.3s ease"
+      overflow="hidden"
+      {...additionalProps}
       {...props}
     />
   );
@@ -172,6 +171,7 @@ export const FieldInput = forwardRef<any, FieldInputProps>(
       label,
       name,
       color,
+      sx,
       type,
       clearable,
       onClear,
@@ -211,7 +211,7 @@ export const FieldInput = forwardRef<any, FieldInputProps>(
             {label}
           </Label>
         )}
-        <InputWrapper color={color} hasFocus={hasFocus} hasError={hasError}>
+        <InputWrapper sx={sx} color={color} hasFocus={hasFocus} hasError={hasError}>
           {start && <AdornmentWrapper>{start}</AdornmentWrapper>}
           <Input
             type={type}
